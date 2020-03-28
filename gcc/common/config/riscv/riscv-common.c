@@ -579,6 +579,10 @@ riscv_parse_arch_string (const char *isa, int *flags, location_t loc)
   if (subset_list->lookup ("v"))
     *flags |= MASK_VECTOR;
 
+  *flags &= ~MASK_DSP;
+  if (subset_list->lookup ("p"))
+    *flags |= MASK_DSP;
+
   if (current_subset_list)
     delete current_subset_list;
 
